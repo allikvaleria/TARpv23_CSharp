@@ -88,7 +88,7 @@ namespace TARpv23_CSharp
         {
             int arv;
             int[] arvud= new int [M-N];
-            for (int i = 0; i < M-N; i++ )
+            for (int i = 0; i < arvud.Length ; i++ )
             {
                 Console.WriteLine ("{0} :", i + 1);
                 arv = N;
