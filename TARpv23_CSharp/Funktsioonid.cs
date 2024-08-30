@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -97,5 +97,22 @@ namespace TARpv23_CSharp
             }
             return arvud;
         }
+
+        //Ülesand 4
+        public static void ostaElevant()
+        {
+            string kasutajasisend;
+
+            do
+            {
+                Console.WriteLine("Osta elevant ära!");
+
+                kasutajasisend = Console.ReadLine();
+            }
+            while (!string.Equals(kasutajasisend, "elevant", StringComparison.OrdinalIgnoreCase));
+            Console.WriteLine("Kasutaja sisestas elevant!");
+        }
     }
 }
+
+
