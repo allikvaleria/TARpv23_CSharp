@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -144,13 +145,13 @@ namespace TARpv23_CSharp
             }
             // 6* Kūsi kasutajalt 4 arvu ning väljasta nendest koostatud suurim neliarvuline arv
             int[] neliArvu = new int[4];
-            for (int i= 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Console.WriteLine("Sisesta arv {0}: ", i + 1);
                 neliArvu[i] = int.Parse(Console.ReadLine());
             }
             Array.Sort(neliArvu);
-            Array.Reverse(neliArvu); 
+            Array.Reverse(neliArvu);
             string suurimArv = string.Join("", neliArvu);
             Console.WriteLine("Suurin võimalik neliarvuline arv; " + suurimArv);
 
@@ -171,8 +172,8 @@ namespace TARpv23_CSharp
 
                 Console.WriteLine("Fail ei saa lisada");
             }
-            foreach (string e in abc) 
-            { 
+            foreach (string e in abc)
+            {
                 Console.WriteLine(e);
             }
             Console.ReadLine();
@@ -184,19 +185,27 @@ namespace TARpv23_CSharp
             arrayList.Add("Teine");
             arrayList.Add("Kolmas");
             Console.WriteLine("Otsing :");
-            string vas=Console.ReadLine();
+            string vas = Console.ReadLine();
+
             if (vas != null && arrayList.Contains(vas))
             {
                 Console.WriteLine("otsing element asub" + arrayList.IndexOf(vas) + "kohal");
             }
             else
             {
-                Console.WriteLine("Kokku oli"+ arrayList.Count + "elemente, vaid otsitav puudub");
+                Console.WriteLine("Kokku oli" + arrayList.Count + "elemente, vaid otsitav puudub");
             }
-            arrayList.Clear();
-            arrayList.Insert(1, "Anna");
-            arrayList.Insert(0, "Mati");
-            Console.WriteLine(arrayList);
+            ArrayList arrayList1 = new ArrayList();
+            arrayList1.Insert(0, "Inna");
+            arrayList1.Insert(1, "Anna");
+            foreach (var item in arrayList1)
+            {
+                Console.WriteLine(item);
+            }
+            //arrayList.Clear();
+            //arrayList.Insert(1, "Anna");
+            //arrayList.Insert(0, "Mati");
+            //Console.WriteLine(arrayList);
 
 
             //III. osa OOP
@@ -213,11 +222,79 @@ namespace TARpv23_CSharp
             inimesed.Add(new Inimene("Irina", 18));
             foreach (Inimene inimene in inimesed)
             {
-                Console.WriteLine(inimene.Nimi+" on "+inimene.Vanus + "aasta vana");
+                Console.WriteLine(inimene.Nimi + " on " + inimene.Vanus + "aasta vana");
             }
-            
+
+
+            Auto1 auto1 = new Auto1("584 HRY", Color.NavajoWhite, inimene1);
+            Auto1 auto2 = new Auto1("584 HRY", Color.DeepPink, inimene2);
+            Auto1 auto3 = new Auto1("584 HRY", Color.DarkRed, inimene3);
+            auto1.KelleOmaAuto();
+            Dictionary<Auto1, Inimene> register = new Dictionary<Auto1, Inimene>();
+            register.Add(auto1, inimene1);
+            register.Add(auto2, inimene2);
+            register.Add(auto3, inimene3);
+            foreach (var item in register)
+            {
+                Console.WriteLine($"{item.Key.Regnumber} - {item.Value.Nimi}");
+            }
+            foreach (KeyValuePair<Auto1, Inimene> pair in register)
+            {
+                Console.WriteLine(pair.Key.Regnumber + "-" + pair.Value.Nimi);
+            }
+
+            // II Ülesanne
+            Random random2 = new Random();
+            List<int> numbrid = new List<int>();
+            for (int i = 0; i < 20; i++)
+            {
+                numbrid.Add(random2.Next(0, 101));
+            }
+            List<int> paarisNumbrid = numbrid.Where(n => n % 2 == 0).ToList();
+            List<int> parituNumbrid = numbrid.Where(n => n % 2 != 0).ToList();
+            List<int> sortNumbrid = paarisNumbrid.Concat(parituNumbrid).ToList();
+            Console.WriteLine("Sorteeritud numbers : ");
+            sortNumbrid.ForEach(n => Console.WriteLine(n + " "));
+
+
+            // I Ülesanne
+            Console.WriteLine("Sisesta numbrid");
+            string numbstr = Console.ReadLine();
+            string[] numblist = numbstr.Split(" ");
+            int[] newlist = new int[numblist.Length];
+            for (int i = 0; i < numblist.Length; i++)
+            {
+                int a1;
+                if (i == 0)
+                {
+                    a1 = int.Parse(numblist[numblist.Length - 1]) + int.Parse(numblist[i + 1]);
+                }
+                else if (i == numblist.Length - 1)
+                {
+                    a1 = int.Parse(numblist[i - 1]) + int.Parse(numblist[0]);
+                }
+                else
+                {
+                    a1 = int.Parse(numblist[i - 1]) + int.Parse(numblist[i + 1]);
+                }
+                newlist[i] = a1;
+            }
+            Console.WriteLine("New list of sums");
+            Console.WriteLine(string.Join(", ", newlist));
+
+            //III Ülesanne
+            var tooded= new List<string>{ "Õun", "banaan", "apelsin", "liha", "kartul" };
+            var kalorid = new List<int> { 52, 89, 47, 143, 77 };
+            Console.Write("Sugu (Mees(M)/Naine(N) : ");
+            string sugu = Console.ReadLine();
+            Console.Write("Sinu kaal (kg): ");
+            double kaal = double.Parse(Console.ReadLine());
+            Console.Write("Sinu pikkus (cm): ");
+            double pikkus1 = double.Parse(Console.ReadLine());
+            Console.Write("Sinu vanus: ");
+            int vanus = int.Parse(Console.ReadLine());
+
         }
     }
 }
-
                                       
